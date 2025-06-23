@@ -1,18 +1,17 @@
 name = "username-palette"
 compatibility_date = "2025-06-23"
-compatibility_flags = ["nodejs_compat"]
 account_id = "a8e8211c674c2b00f3a8996b65b56447"
 workers_dev = true
+main = ".output/server/index.mjs"
 routes = [
   {pattern = "username-palette.mq1.dev", custom_domain = true}
 ]
 
 [site]
 bucket = ".output/public"
-entry-point = ".output/server/index.mjs"
 
 [build]
-command = "NITRO_PRESET=cloudflare pnpm nuxt build"
+command = "pnpm run build:cf"
 
 [observability.logs]
 enabled = true

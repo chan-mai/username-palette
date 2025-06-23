@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: false,
   modules: ["@nuxtjs/tailwindcss", "@nuxt/icon", 'nuxt-gtag'],
   css: ['~/assets/css/main.css'],
   tailwindcss: {
@@ -7,7 +8,8 @@ export default defineNuxtConfig({
     configPath: 'tailwind.config.js',
   },
   nitro: {
-    preset: 'cloudflare'
+    preset: 'cloudflare',
+    serveStatic: true,
   },
   app: {
     head: {
