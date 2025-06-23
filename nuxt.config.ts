@@ -15,5 +15,19 @@ export default defineNuxtConfig({
         { name: 'description', content: 'インスタやTikTokなどのSNSで使える、いい感じのエモいユーザーネームを生成します。' }
       ]
     }
+  },
+  vite: {
+    optimizeDeps: {
+      include: ['lucide-vue-next']
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'lucide-icons': ['lucide-vue-next']
+          }
+        }
+      }
+    }
   }
 });
