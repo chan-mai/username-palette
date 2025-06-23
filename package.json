@@ -4,10 +4,12 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "build:cf": "NITRO_PRESET=cloudflare nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deploy": "wrangler deploy"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.23",

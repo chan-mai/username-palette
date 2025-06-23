@@ -247,8 +247,14 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Invalid generation type',
       });
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error generating username:', error);
+    
+    // Cloudflare Workers環境でのエラーハンドリング
+    if (error.statusCode) {
+      throw error;
+    }
+    
     throw createError({
       statusCode: 500,
       statusMessage: 'Internal server error',

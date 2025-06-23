@@ -6,6 +6,9 @@ export default defineNuxtConfig({
     cssPath: '~/assets/css/main.css',
     configPath: 'tailwind.config.js',
   },
+  nitro: {
+    preset: 'cloudflare'
+  },
   app: {
     head: {
       title: 'Username Palette',
