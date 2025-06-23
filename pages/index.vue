@@ -34,14 +34,14 @@
               'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
               activeTab === 'random' ? 'bg-white text-rose-400' : 'hover:bg-white/50'
             ]" @click="activeTab = 'random'">
-              <Sparkles class="h-4 w-4 mr-2" />
+              <Icon name="lucide:sparkles" class="h-4 w-4 mr-2" />
               ランダム生成
             </button>
             <button :class="[
               'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
               activeTab === 'styled' ? 'bg-white text-rose-400' : 'hover:bg-white/50'
             ]" @click="activeTab = 'styled'">
-              <User class="h-4 w-4 mr-2" />
+              <Icon name="lucide:user" class="h-4 w-4 mr-2" />
               スタイル生成
             </button>
           </div>
@@ -194,7 +194,7 @@
         <button
           class="h-12 w-12 flex items-center justify-center rounded-full hover:bg-rose-200 disabled:opacity-30 focus:outline-none focus:ring-2 focus:ring-rose-300 focus:ring-offset-2 transition-colors"
           :disabled="listplace <= 0" @click="backUsername">
-          <ChevronLeft class="h-6 w-6" />
+          <Icon name="lucide:chevron-left" class="h-6 w-6" />
         </button>
 
         <div class="text-center">
@@ -211,7 +211,7 @@
         <button
           class="h-12 w-12 flex items-center justify-center rounded-full hover:bg-rose-200 focus:outline-none focus:ring-2 focus:ring-rose-300 focus:ring-offset-2 transition-colors"
           @click="generateUsername">
-          <ChevronRight class="h-6 w-6" />
+          <Icon name="lucide:chevron-right" class="h-6 w-6" />
         </button>
       </div>
 
@@ -219,7 +219,7 @@
         <button
           class="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium hover:bg-rose-50 focus:outline-none focus:ring-2 focus:ring-rose-300 focus:ring-offset-2 transition-colors"
           :disabled="listplace <= 0" @click="backUsername">
-          <ChevronLeft class="h-4 w-4 mr-2" />
+          <Icon name="lucide:chevron-left" class="h-4 w-4 mr-2" />
           戻る
         </button>
 
@@ -229,14 +229,14 @@
           <LoadingSpinner v-if="isGenerating" />
           <span class="flex items-center" v-else>
             生成
-            <ChevronRight class="h-4 w-4 ml-2" />
+            <Icon name="lucide:chevron-right" class="h-4 w-4 ml-2" />
           </span>
         </button>
 
         <button
           class="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium hover:bg-rose-50 focus:outline-none focus:ring-2 focus:ring-rose-300 focus:ring-offset-2 transition-colors"
           @click="copyUsername">
-          <Copy class="h-4 w-4 mr-2" />
+          <Icon name="lucide:copy" class="h-4 w-4 mr-2" />
           コピー
         </button>
       </div>
@@ -273,8 +273,6 @@
 </template>
 
 <script setup lang="ts">
-import { Sparkles, User, ChevronLeft, ChevronRight, Copy } from 'lucide-vue-next';
-
 interface FilterSettings {
   requiredChars: string;
   excludedChars: string;

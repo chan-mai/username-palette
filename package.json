@@ -12,8 +12,8 @@
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
     "@heroicons/vue": "^2.2.0",
+    "@nuxt/icon": "^1.14.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
-    "lucide-vue-next": "^0.522.0",
     "nuxt": "^3.17.5",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"

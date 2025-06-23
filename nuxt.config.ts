@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxt/icon"],
   css: ['~/assets/css/main.css'],
   tailwindcss: {
     cssPath: '~/assets/css/main.css',
@@ -14,20 +14,6 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: 'インスタやTikTokなどのSNSで使える、いい感じのエモいユーザーネームを生成します。' }
       ]
-    }
-  },
-  vite: {
-    optimizeDeps: {
-      include: ['lucide-vue-next']
-    },
-    build: {
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'lucide-icons': ['lucide-vue-next']
-          }
-        }
-      }
     }
   }
 });
