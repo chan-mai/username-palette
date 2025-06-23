@@ -5,5 +5,15 @@ export default defineNuxtConfig({
   tailwindcss: {
     cssPath: '~/assets/css/main.css',
     configPath: 'tailwind.config.js',
+  },
+  app: {
+    head: {
+      title: 'Username Palette',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: 'インスタやTikTokなどのSNSで使える、いい感じのエモいユーザーネームを生成します。' }
+      ]
+    }
   }
-})
+});
