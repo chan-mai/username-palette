@@ -51,7 +51,7 @@
             
             <div class="bg-slate-50 rounded-lg p-4 mb-4">
               <h4 class="font-medium text-slate-900 mb-2">Base URL</h4>
-              <code class="text-sm bg-white px-2 py-1 rounded border">https://username-palette.mq1.dev/api</code>
+              <code class="text-sm bg-white px-2 py-1 rounded border">https://username-palette.mq1.dev/api/v1</code>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -98,6 +98,7 @@
                   <div class="bg-slate-900 rounded-lg p-4 overflow-x-auto">
                     <pre class="text-sm text-slate-100"><code>{
   "type": "random" | "styled",
+  "count": number, // 1-100の間で指定（省略時は1）
   "filters": {
     "requiredChars": "string",
     "excludedChars": "string", 
@@ -120,19 +121,28 @@
                     <h4 class="font-medium text-slate-900 mb-2">成功レスポンス (200)</h4>
                     <div class="bg-green-50 border border-green-200 rounded-lg p-4">
                       <pre class="text-sm text-green-800"><code>{
-  "username": "generated_username"
+  "usernames": ["generated_username"]
 }</code></pre>
                     </div>
                   </div>
                   
                   <div>
-                    <h4 class="font-medium text-slate-900 mb-2">エラーレスポンス (400)</h4>
-                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
-                      <pre class="text-sm text-red-800"><code>{
+                    <h4 class="font-medium text-slate-900 mb-2">複数生成レスポンス (200)</h4>
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <pre class="text-sm text-green-800"><code>{
+  "usernames": ["username1", "username2", "username3"]
+}</code></pre>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-medium text-slate-900 mb-2">エラーレスポンス (400)</h4>
+                  <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <pre class="text-sm text-red-800"><code>{
   "statusCode": 400,
   "statusMessage": "エラーメッセージ"
 }</code></pre>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -172,7 +182,7 @@
                     <h5 class="font-medium text-slate-900 mb-2">レスポンス</h5>
                     <div class="bg-green-50 border border-green-200 rounded-lg p-4">
                       <pre class="text-sm text-green-800"><code>{
-  "username": "nox8l3n"
+  "usernames": ["nox8l3n"]
 }</code></pre>
                     </div>
                   </div>
@@ -206,7 +216,49 @@
                     <h5 class="font-medium text-slate-900 mb-2">レスポンス</h5>
                     <div class="bg-green-50 border border-green-200 rounded-lg p-4">
                       <pre class="text-sm text-green-800"><code>{
-  "username": "k40r1_coffee2024"
+  "usernames": ["k40r1_coffee2024"]
+}</code></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Multiple Generation Example -->
+              <div class="border border-slate-200 rounded-lg overflow-hidden">
+                <div class="bg-slate-50 px-4 py-3 border-b border-slate-200">
+                  <h4 class="font-medium text-slate-900">複数生成の例</h4>
+                </div>
+                <div class="p-4">
+                  <div class="mb-4">
+                    <h5 class="font-medium text-slate-900 mb-2">リクエスト</h5>
+                    <div class="bg-slate-900 rounded-lg p-4 overflow-x-auto">
+                      <pre class="text-sm text-slate-100"><code>curl -X POST https://username-palette.mq1.dev/api/generate-username \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "random",
+    "count": 5,
+    "filters": {
+      "requiredChars": "x8",
+      "excludedChars": "abc",
+      "excludeHyphen": true,
+      "excludeUnderscore": false,
+      "excludeDot": false
+    }
+  }'</code></pre>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h5 class="font-medium text-slate-900 mb-2">レスポンス</h5>
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <pre class="text-sm text-green-800"><code>{
+  "usernames": [
+    "nox8l3n",
+    "x8m3q2p",
+    "k8x2n4r",
+    "x8p5m1q",
+    "n8x3l2k"
+  ]
 }</code></pre>
                     </div>
                   </div>
@@ -242,7 +294,8 @@
                 </div>
                 <div class="p-4">
                   <div class="bg-slate-900 rounded-lg p-4 overflow-x-auto">
-                    <pre class="text-sm text-slate-100"><code>async function generateUsername() {
+                    <pre class="text-sm text-slate-100"><code>// 単一生成
+async function generateUsername() {
   try {
     const response = await fetch('/api/generate-username', {
       method: 'POST',
@@ -251,6 +304,7 @@
       },
       body: JSON.stringify({
         type: 'random',
+        count: 1,
         filters: {
           requiredChars: 'x8',
           excludedChars: 'abc',
@@ -262,10 +316,39 @@
     });
 
     const data = await response.json();
-    console.log('Generated username:', data.username);
-    return data.username;
+    console.log('Generated username:', data.usernames[0]);
+    return data.usernames[0];
   } catch (error) {
     console.error('Error generating username:', error);
+  }
+}
+
+// 複数生成
+async function generateMultipleUsernames() {
+  try {
+    const response = await fetch('/api/generate-username', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        type: 'random',
+        count: 5,
+        filters: {
+          requiredChars: 'x8',
+          excludedChars: 'abc',
+          excludeHyphen: true,
+          excludeUnderscore: false,
+          excludeDot: false
+        }
+      })
+    });
+
+    const data = await response.json();
+    console.log('Generated usernames:', data.usernames);
+    return data.usernames;
+  } catch (error) {
+    console.error('Error generating usernames:', error);
   }
 }</code></pre>
                   </div>
@@ -282,11 +365,13 @@
                     <pre class="text-sm text-slate-100"><code>import requests
 import json
 
+# 単一生成
 def generate_username():
     url = "https://username-palette.mq1.dev/api/generate-username"
     
     payload = {
         "type": "styled",
+        "count": 1,
         "styleSettings": {
             "baseName": "kaori",
             "style": "number-replace",
@@ -304,11 +389,43 @@ def generate_username():
         response.raise_for_status()
         
         data = response.json()
-        print(f"Generated username: {data['username']}")
-        return data['username']
+        print(f"Generated username: {data['usernames'][0]}")
+        return data['usernames'][0]
         
     except requests.exceptions.RequestException as e:
         print(f"Error generating username: {e}")
+        return None
+
+# 複数生成
+def generate_multiple_usernames():
+    url = "https://username-palette.mq1.dev/api/generate-username"
+    
+    payload = {
+        "type": "random",
+        "count": 5,
+        "filters": {
+            "requiredChars": "x8",
+            "excludedChars": "abc",
+            "excludeHyphen": True,
+            "excludeUnderscore": False,
+            "excludeDot": False
+        }
+    }
+    
+    headers = {
+        "Content-Type": "application/json"
+    }
+    
+    try:
+        response = requests.post(url, json=payload, headers=headers)
+        response.raise_for_status()
+        
+        data = response.json()
+        print(f"Generated usernames: {data['usernames']}")
+        return data['usernames']
+        
+    except requests.exceptions.RequestException as e:
+        print(f"Error generating usernames: {e}")
         return None</code></pre>
                   </div>
                 </div>
@@ -323,10 +440,12 @@ def generate_username():
                   <div class="bg-slate-900 rounded-lg p-4 overflow-x-auto">
                     <pre class="text-sm text-slate-100"><code>const axios = require('axios');
 
+// 単一生成
 async function generateUsername() {
   try {
     const response = await axios.post('/api/generate-username', {
       type: 'random',
+      count: 1,
       filters: {
         requiredChars: 'x8',
         excludedChars: 'abc',
@@ -340,10 +459,36 @@ async function generateUsername() {
       }
     });
 
-    console.log('Generated username:', response.data.username);
-    return response.data.username;
+    console.log('Generated username:', response.data.usernames[0]);
+    return response.data.usernames[0];
   } catch (error) {
     console.error('Error generating username:', error.response?.data || error.message);
+  }
+}
+
+// 複数生成
+async function generateMultipleUsernames() {
+  try {
+    const response = await axios.post('/api/generate-username', {
+      type: 'random',
+      count: 5,
+      filters: {
+        requiredChars: 'x8',
+        excludedChars: 'abc',
+        excludeHyphen: true,
+        excludeUnderscore: false,
+        excludeDot: false
+      }
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    console.log('Generated usernames:', response.data.usernames);
+    return response.data.usernames;
+  } catch (error) {
+    console.error('Error generating usernames:', error.response?.data || error.message);
   }
 }</code></pre>
                   </div>
@@ -370,6 +515,11 @@ async function generateUsername() {
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">400</td>
                     <td class="px-6 py-4 text-sm text-slate-600">リクエストが無効です</td>
                     <td class="px-6 py-4 text-sm text-slate-600">リクエストボディの形式を確認してください</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">400</td>
+                    <td class="px-6 py-4 text-sm text-slate-600">countパラメータが無効です</td>
+                    <td class="px-6 py-4 text-sm text-slate-600">countは1-100の間で指定してください</td>
                   </tr>
                   <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">400</td>

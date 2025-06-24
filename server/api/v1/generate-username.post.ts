@@ -15,6 +15,7 @@ interface StyleSettings {
 
 interface GenerateRequest {
   type: 'random' | 'styled';
+  count?: number;
   filters?: FilterSettings;
   styleSettings?: StyleSettings;
 }
@@ -201,7 +202,10 @@ const isValidUsername = (username: string, filters: FilterSettings) => {
 export default defineEventHandler(async (event) => {
   try {
     const body: GenerateRequest = await readBody(event);
-    const { type, filters, styleSettings } = body;
+    const { type, count, filters, styleSettings } = body;
+
+    // countパラメータの検証
+    const generateCount = count ? Math.max(1, Math.min(100, count)) : 1;
 
     if (type === 'random') {
       if (!filters) {
@@ -211,26 +215,26 @@ export default defineEventHandler(async (event) => {
         });
       }
 
+      const usernames: string[] = [];
       let attempts = 0;
-      const maxAttempts = 100;
-      let username = "";
+      const maxAttempts = generateCount * 100; // 各ユーザー名に対して最大100回試行
 
-      while (attempts < maxAttempts) {
-        username = generateRandomUsername();
-        if (isValidUsername(username, filters)) {
-          break;
+      while (usernames.length < generateCount && attempts < maxAttempts) {
+        const username = generateRandomUsername();
+        if (isValidUsername(username, filters) && !usernames.includes(username)) {
+          usernames.push(username);
         }
         attempts++;
       }
 
-      if (attempts >= maxAttempts) {
+      if (usernames.length === 0) {
         throw createError({
           statusCode: 400,
           statusMessage: 'フィルター条件が厳しすぎます。条件を緩めてください。',
         });
       }
 
-      return { username };
+      return { usernames };
     } else if (type === 'styled') {
       if (!styleSettings) {
         throw createError({
@@ -239,8 +243,13 @@ export default defineEventHandler(async (event) => {
         });
       }
 
-      const username = generateStyledUsername(styleSettings);
-      return { username };
+      const usernames: string[] = [];
+      for (let i = 0; i < generateCount; i++) {
+        const username = generateStyledUsername(styleSettings);
+        usernames.push(username);
+      }
+      return { usernames };
+      
     } else {
       throw createError({
         statusCode: 400,

@@ -373,19 +373,21 @@ const createNewUsername = async () => {
     
     const requestBody = {
       type: activeTab.value as 'random' | 'styled',
+      count: 1,
       ...(activeTab.value === 'random' && { filters: filters.value }),
       ...(activeTab.value === 'styled' && { styleSettings: styleSettings.value }),
     };
 
-    const response = await $fetch('/api/generate-username', {
+    const response = await $fetch('/api/v1/generate-username', {
       method: 'POST',
       body: requestBody,
-    }) as { username: string };
+    }) as { usernames: string[] };
 
-    if (response?.username) {
-      currentUsername.value = response.username;
-      namelist.value.push(response.username);
-      listplace.value++;
+    if (response?.usernames && response.usernames.length > 0) {
+      const newUsernames = response.usernames;
+      namelist.value.push(...newUsernames);
+      listplace.value = namelist.value.length - newUsernames.length;
+      currentUsername.value = newUsernames[0];
     }
   } catch (error: any) {
     console.error('Error generating username:', error);
