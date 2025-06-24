@@ -29,6 +29,7 @@
                 <div>
                     <h3 class="text-lg font-semibold mb-4">リンク</h3>
                     <ul class="text-gray-300 text-sm space-y-2">
+                        <li><NuxtLink to="/docs/api/v1" class="text-white hover:text-rose-200 transition-colors">API ドキュメント</NuxtLink></li>  
                         <li><NuxtLink to="https://mq1.dev/about" class="text-white hover:text-rose-200 transition-colors">運営者情報</NuxtLink></li>
                     </ul>
                 </div>
