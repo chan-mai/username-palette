@@ -26,10 +26,11 @@ export default defineNuxtConfig({
         { name: 'og:url', content: 'https://username-palette.mq1.dev' },
         { name: 'og:type', content: 'website' },
         { name: 'og:site_name', content: 'Username Palette' },
+        { name: 'og:image', content: 'https://username-palette.mq1.dev/ogp.webp' },
         { name: 'twitter:card', content: 'app' },
         { name: 'twitter:title', content: 'Username Palette' },
         { name: 'twitter:description', content: 'インスタやTikTokなどのSNSで使える、いい感じのエモくて読めないユーザーネームが作れます。' },
-
+        { name: 'twitter:image', content: 'https://username-palette.mq1.dev/ogp.webp' },
       ]
     }
   },
