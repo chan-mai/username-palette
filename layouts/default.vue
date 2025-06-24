@@ -7,7 +7,7 @@
                 <div>
                     <h3 class="text-lg font-semibold mb-4">このサイトについて</h3>
                     <p class="text-gray-300 text-sm leading-relaxed">
-                        インスタやTikTokなどのSNSで使える、いい感じのエモいユーザーネームを生成します。
+                        インスタやTikTokなどのSNSで使える、いい感じのエモくて読めないユーザーネームが作れます。
                     </p>
                     <p class="text-gray-300 text-sm leading-relaxed">
                         <NuxtLink to="https://username-maker.com/" target="_blank"

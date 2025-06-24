@@ -17,18 +17,18 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'インスタやTikTokなどのSNSで使える、いい感じのエモいユーザーネームを生成します。' },
+        { name: 'description', content: 'インスタやTikTokなどのSNSで使える、いい感じのエモくて読めないユーザーネームが作れます。' },
         { name: 'keywords', content: '読めないユーザーネームメーカー, ユーザーネームメーカー, ユーザーネーム生成, ユーザーネーム作成, Username Palette' },
         { name: 'author', content: 'chan-mai' },
         { name: 'robots', content: 'index, follow' },
         { name: 'og:title', content: 'Username Palette' },
-        { name: 'og:description', content: 'インスタやTikTokなどのSNSで使える、いい感じのエモいユーザーネームを生成します。' },
+        { name: 'og:description', content: 'インスタやTikTokなどのSNSで使える、いい感じのエモくて読めないユーザーネームが作れます。' },
         { name: 'og:url', content: 'https://username-palette.mq1.dev' },
         { name: 'og:type', content: 'website' },
         { name: 'og:site_name', content: 'Username Palette' },
         { name: 'twitter:card', content: 'app' },
         { name: 'twitter:title', content: 'Username Palette' },
-        { name: 'twitter:description', content: 'インスタやTikTokなどのSNSで使える、いい感じのエモいユーザーネームを生成します。' },
+        { name: 'twitter:description', content: 'インスタやTikTokなどのSNSで使える、いい感じのエモくて読めないユーザーネームが作れます。' },
 
       ]
     }
