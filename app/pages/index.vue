@@ -280,7 +280,7 @@ useJsonld(() => ({
   name: 'Username Palette',
   alternateName: '読めないユーザーネームメーカー',
   url: 'https://username-palette.mq1.dev',
-  description: '韓国風・エモい・かわいいユーザーネームが無限生成🌙 映える！読めないユーザーネームメーカーメーカーです！',
+  description: '韓国風・エモい・かわいいユーザーネームが無限生成🌙 映える！読めないユーザーネームメーカーです！',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Web Browser',
   offers: {
