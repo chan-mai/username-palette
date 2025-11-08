@@ -1,25 +1,3 @@
-interface FilterSettings {
-  requiredChars: string;
-  excludedChars: string;
-  excludeHyphen: boolean;
-  excludeUnderscore: boolean;
-  excludeDot: boolean;
-}
-
-interface StyleSettings {
-  baseName: string;
-  style: string;
-  suffix: string;
-  customWord: string;
-}
-
-interface GenerateRequest {
-  type: 'random' | 'styled';
-  count?: number;
-  filters?: FilterSettings;
-  styleSettings?: StyleSettings;
-}
-
 const generateRandomUsername = () => {
   const str = "nox8l3nrmqeszo.___";
   const len = 7;

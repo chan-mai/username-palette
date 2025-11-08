@@ -311,20 +311,6 @@ useJsonld(() => ({
   }
 }));
 
-interface FilterSettings {
-  requiredChars: string;
-  excludedChars: string;
-  excludeHyphen: boolean;
-  excludeUnderscore: boolean;
-  excludeDot: boolean;
-}
-
-interface StyleSettings {
-  baseName: string;
-  style: string;
-  suffix: string;
-  customWord: string;
-}
 
 interface NotificationState {
   show: boolean;
@@ -416,10 +402,10 @@ const createNewUsername = async () => {
       ...(activeTab.value === 'styled' && { styleSettings: styleSettings.value }),
     };
 
-    const response = await $fetch('/api/v1/generate-username', {
+    const response = await $fetch<GenerateResponse>('/api/v1/generate-username', {
       method: 'POST',
       body: requestBody,
-    }) as { usernames: string[] };
+    });
 
     if (response?.usernames && response.usernames.length > 0) {
       const newUsernames = response.usernames;
