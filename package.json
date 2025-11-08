@@ -16,7 +16,7 @@
     "@heroicons/vue": "^2.2.0",
     "@nuxt/icon": "^1.14.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
-    "nuxt": "^3.17.5",
+    "nuxt": "^4.2.1",
     "nuxt-gtag": "3.0.3",
     "nuxt-jsonld": "^2.2.1",
     "vue": "^3.5.17",
