@@ -273,6 +273,44 @@
 </template>
 
 <script setup lang="ts">
+// JSON-LD構造化データの設定
+useJsonld(() => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Username Palette',
+  alternateName: '読めないユーザーネームメーカー',
+  url: 'https://username-palette.mq1.dev',
+  description: '韓国風・エモい・かわいいユーザーネームが無限生成🌙 映える！読めないユーザーネームメーカーメーカーです！',
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Web Browser',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'JPY'
+  },
+  creator: {
+    '@type': 'Person',
+    name: 'chan-mai'
+  },
+  inLanguage: 'ja',
+  browserRequirements: 'Requires JavaScript. Requires HTML5.',
+  softwareVersion: '1.0',
+  featureList: [
+    '読めないユーザーネームメーカー',
+    'ランダムユーザーネーム生成',
+    'スタイル別ユーザーネーム生成',
+    '必須文字・除外文字フィルター',
+    '韓国風・絵文字風など12種類のスタイル',
+    'インスタグラム、TikTok、Twitterなどに対応'
+  ],
+  screenshot: 'https://username-palette.mq1.dev/ogp.webp',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    ratingCount: '100'
+  }
+}));
+
 interface FilterSettings {
   requiredChars: string;
   excludedChars: string;

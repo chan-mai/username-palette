@@ -557,6 +557,46 @@ async function generateMultipleUsernames() {
 <script setup>
 import { NuxtLink } from '#components';
 
+// JSON-LD構造化データの設定
+useJsonld(() => ({
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: 'Username Palette API Documentation',
+  name: 'Username Palette API v1',
+  description: 'Username Palette APIは、ランダムなユーザー名やスタイル付きのユーザー名を生成するためのRESTful APIです。',
+  url: 'https://username-palette.mq1.dev/docs/api/v1',
+  version: '1.0',
+  inLanguage: 'ja',
+  author: {
+    '@type': 'Person',
+    name: 'chan-mai'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Username Palette',
+    url: 'https://username-palette.mq1.dev'
+  },
+  datePublished: '2024-11-08',
+  dateModified: '2024-11-08',
+  mainEntity: {
+    '@type': 'WebAPI',
+    name: 'Username Palette API',
+    description: 'ユーザー名生成API',
+    documentation: 'https://username-palette.mq1.dev/docs/api/v1',
+    termsOfService: 'https://username-palette.mq1.dev',
+    provider: {
+      '@type': 'Organization',
+      name: 'Username Palette'
+    }
+  },
+  about: {
+    '@type': 'SoftwareApplication',
+    name: 'Username Palette API',
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Any'
+  }
+}));
+
 const sections = [
   { id: 'overview', title: '概要' },
   { id: 'endpoints', title: 'エンドポイント' },

@@ -35,6 +35,7 @@
 - **フロントエンド**: Nuxt 3, Vue 3, TypeScript
 - **スタイリング**: Tailwind CSS
 - **アイコン**: @nuxt/icon
+- **構造化データ**: nuxt-jsonld (Schema.org JSON-LD)
 - **デプロイ**: Cloudflare Workers
 - **パッケージマネージャー**: pnpm
 - **分析**: Google Analytics (gtag)
@@ -124,6 +125,12 @@ username-maker/
 - **スタイル**: 適用するスタイルの種類
 - **カスタムワード**: 追加するカスタムワード
 - **サフィックス**: 末尾に追加する文字列
+
+### 構造化データ（JSON-LD）
+このアプリケーションは、検索エンジンの理解を深めるためにSchema.org形式の構造化データを実装しています：
+- **WebApplication スキーマ**: メインページに実装（アプリケーション情報、機能リスト、評価など）
+- **TechArticle スキーマ**: APIドキュメントページに実装（API仕様、バージョン情報など）
+- **nuxt-jsonld**: 構造化データの管理に使用
 
 ## 🤝 コントリビューション
 
